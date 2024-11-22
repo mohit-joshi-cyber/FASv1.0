@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard UI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>AppName</h2>
+      <ul class="menu">
+        <li>Dashboard</li>
+        <li>Students</li>
+        <li>Data Center</li>
+        <li>Attendance</li>
+        <li>Settings</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <input type="text" class="search-bar" placeholder="Search...">
+        <div class="profile">Profile</div>
+      </header>
+
+      <!-- Stats Section -->
+      <section class="stats">
+        <div class="stat-box purple">
+          <h3>35</h3>
+          <p>Total Students</p>
+          <img src="student.png" alt="decorative icon" class="totals-png">
+        </div>
+        <div class="stat-box blue">
+          <h3>20</h3>
+          <p>Total Girls</p>
+          <img src="girl.png" alt="decorative icon" class="girl-png">          
+        </div>
+        <div class="stat-box red">
+          <h3>15</h3>
+          <p>Total Boys</p>
+          <img src="boy.png" alt="decorative icon" class="boy-png">          
+        </div>
+        <div class="stat-box green">
+          <h3>10</h3>
+          <p>Total Absent</p>
+          <img src="absent.png" alt="decorative icon" class="absents-png">
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="charts">
+        <div class="chart-container">
+          <h4>Traffic Analysis</h4>
+          <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart-container">
+          <h4>User Demographics</h4>
+          <canvas id="barChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+<script>
+  console.log('Initializing Line Chart');
+  const lineCtx = document.getElementById('lineChart')?.getContext('2d');
+  if (!lineCtx) {
+    console.error('Line Chart Canvas not found!');
+  } else {
+    console.log('Line Chart Canvas found.');
+    new Chart(lineCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Traffic',
+          data: [3000, 4000, 3500, 5000, 4500, 6000],
+          borderColor: '#3498db',
+          backgroundColor: 'rgba(52, 152, 219, 0.2)',
+          borderWidth: 2
+        }]
+      }
+    });
+  }
+
+  console.log('Initializing Bar Chart');
+  const barCtx = document.getElementById('barChart')?.getContext('2d');
+  if (!barCtx) {
+    console.error('Bar Chart Canvas not found!');
+  } else {
+    console.log('Bar Chart Canvas found.');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Group A', 'Group B', 'Group C', 'Group D'],
+        datasets: [{
+          label: 'Users',
+          data: [1200, 1900, 3000, 1700],
+          backgroundColor: ['#9b59b6', '#3498db', '#e74c3c', '#2ecc71']
+        }]
+      }
+    });
+  }
+</script>
+</body>
+</html>
